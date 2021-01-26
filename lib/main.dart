@@ -105,8 +105,8 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             RaisedButton(
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                var message = await Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) {
@@ -114,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       fullscreenDialog: true),
                 );
+                print(message);
               },
               child: Text('Go to Next'),
             ),
@@ -140,7 +141,7 @@ class SecondPage extends StatelessWidget {
       body: Center(
         child: RaisedButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pop(context, 'moemoekyun');
           },
           child: Text(firstText),
         ),
