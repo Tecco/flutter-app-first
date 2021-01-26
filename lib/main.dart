@@ -247,6 +247,8 @@ class SecondPage extends StatelessWidget {
               ),
               Icon(Icons.insert_comment),
               Container(
+                  color: Colors.red,
+                  padding: EdgeInsets.all(32),
                   width: 320,
                   height: 320,
                   child: Image.network(
