@@ -2,11 +2,14 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+String _imageUrl =
+    'https://i.pinimg.com/564x/e1/0e/77/e10e77ecf16151fe4ff92b1d1fa3f80e.jpg';
+
+enum Color { red, green, blue }
+
 void main() {
   runApp(MyApp());
 }
-
-enum Color { red, green, blue }
 
 extension ColorExtension on Color {
   String get name {
@@ -256,15 +259,18 @@ class SecondPage extends StatelessWidget {
                       color: Colors.green,
                       border: Border.all(color: Colors.red, width: 8),
                       borderRadius: BorderRadius.circular(12)),
-                  child: Image.network(
-                      'https://i.pinimg.com/564x/e1/0e/77/e10e77ecf16151fe4ff92b1d1fa3f80e.jpg')),
+                  child: Image.network(_imageUrl)),
               Container(
-                  // color: Colors.red,
-                  margin: EdgeInsets.only(top: 16),
-                  width: 64,
-                  height: 64,
-                  decoration: BoxDecoration(
-                      color: Colors.green, shape: BoxShape.circle))
+                // color: Colors.red,
+                margin: EdgeInsets.only(top: 16),
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: Image.network(_imageUrl).image),
+                ),
+              )
             ]),
       ),
     );
