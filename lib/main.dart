@@ -110,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) {
-                        return SecondPage();
+                        return SecondPage('oooohhhhhhhhh');
                       },
                       fullscreenDialog: true),
                 );
@@ -130,6 +130,10 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class SecondPage extends StatelessWidget {
+  final String firstText;
+
+  SecondPage(this.firstText);
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('yeaaah')),
@@ -138,7 +142,7 @@ class SecondPage extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('go back'),
+          child: Text(firstText),
         ),
       ),
     );
