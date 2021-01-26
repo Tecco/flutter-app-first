@@ -104,6 +104,11 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            RaisedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return SecondPage();
+              }));
+            })
           ],
         ),
       ),
@@ -112,6 +117,22 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('yeaaah')),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('go back'),
+        ),
+      ),
     );
   }
 }
