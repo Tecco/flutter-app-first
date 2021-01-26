@@ -71,6 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
   // 同じ意味
   bool isEven2(int number) => number / 2 == 0;
 
+  // デフォルトパラメータ
+  void decorateText({bool isBold = false}) {
+    // decorate
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
