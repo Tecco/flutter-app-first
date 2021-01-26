@@ -249,6 +249,7 @@ class SecondPage extends StatelessWidget {
               Container(
                   color: Colors.red,
                   padding: EdgeInsets.all(32),
+                  margin: EdgeInsets.only(top: 32),
                   width: 320,
                   height: 320,
                   child: Image.network(
