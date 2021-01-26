@@ -246,8 +246,11 @@ class SecondPage extends StatelessWidget {
                 child: Text('Replace to third'),
               ),
               Icon(Icons.insert_comment),
-              Image.network(
-                  'https://i.pinimg.com/564x/e1/0e/77/e10e77ecf16151fe4ff92b1d1fa3f80e.jpg')
+              Container(
+                  width: 320,
+                  height: 320,
+                  child: Image.network(
+                      'https://i.pinimg.com/564x/e1/0e/77/e10e77ecf16151fe4ff92b1d1fa3f80e.jpg'))
             ]),
       ),
     );
