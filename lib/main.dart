@@ -172,9 +172,14 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '$_counter times',
               style: Theme.of(context).textTheme.headline4,
             ),
+            if (_counter >= 3)
+              Text(
+                'yeahh',
+                style: Theme.of(context).textTheme.headline6,
+              ),
             RaisedButton(
               onPressed: () async {
                 var message = await Navigator.push(
