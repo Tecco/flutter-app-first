@@ -128,6 +128,12 @@ class _MyHomePageState extends State<MyHomePage> {
     var _ = List()..add(1)..add(2)..add(3);
   }
 
+  void combineListTest() {
+    var list1 = List();
+    var list2 = List()..add(1)..add(2)..add(3);
+    var list3 = [list1, ...list2];
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
