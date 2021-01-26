@@ -110,13 +110,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) {
-                        return SecondPage('oooohhhhhhhhh');
+                        return SecondPage('Close second');
                       },
                       fullscreenDialog: true),
                 );
                 print(message);
               },
-              child: Text('Go to Next'),
+              child: Text('Push Second'),
             ),
           ],
         ),
@@ -139,11 +139,56 @@ class SecondPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('yeaaah')),
       body: Center(
+        child: Column(
+            // Columnは何も指定しないと、heightがmatch_parentになってるため指定しないと上部にくっついてしまう
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                onPressed: () {
+                  Navigator.pop(context, 'moemoekyun');
+                },
+                child: Text(firstText),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return ThirdPage('second');
+                    },
+                  ));
+                },
+                child: Text('Push third'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(
+                    builder: (context) {
+                      return ThirdPage('second');
+                    },
+                  ));
+                },
+                child: Text('Replace to third'),
+              )
+            ]),
+      ),
+    );
+  }
+}
+
+class ThirdPage extends StatelessWidget {
+  final String secondText;
+
+  ThirdPage(this.secondText);
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(secondText)),
+      body: Center(
         child: RaisedButton(
           onPressed: () {
-            Navigator.pop(context, 'moemoekyun');
+            Navigator.pop(context);
           },
-          child: Text(firstText),
+          child: Text('Close Third'),
         ),
       ),
     );
