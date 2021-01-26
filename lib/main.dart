@@ -117,6 +117,17 @@ class _MyHomePageState extends State<MyHomePage> {
   // setter
   set counter(int count) => _counter = count;
 
+  void addListTest() {
+    var list = List();
+    list.add(1);
+    list.add(2);
+    list.add(3);
+
+    list..add(4)..add(5)..add(6);
+
+    var _ = List()..add(1)..add(2)..add(3);
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
