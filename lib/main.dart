@@ -106,9 +106,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             RaisedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SecondPage();
-                }));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) {
+                        return SecondPage();
+                      },
+                      fullscreenDialog: true),
+                );
               },
               child: Text('Go to Next'),
             ),
