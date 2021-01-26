@@ -1,7 +1,28 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
+}
+
+enum Color { red, green, blue }
+
+extension ColorExtension on Color {
+  String get name {
+    switch (this) {
+      case Color.red:
+        return 'red';
+        break;
+      case Color.green:
+        return 'green';
+        break;
+      case Color.blue:
+        return 'blue';
+        break;
+    }
+    // 省略
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -51,6 +72,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  Color _colors = Color.red;
 
   void _incrementCounter() {
     setState(() {
@@ -60,7 +82,20 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      print(getRandomColorName());
     });
+  }
+
+  String getRandomColorName() {
+    var colors = Color.values;
+    var rand = math.Random();
+    var color = colors[rand.nextInt(3)];
+    return color.name;
+    // enumの分岐は以下のような感じ
+    // switch (color) {
+    //   case Color.red:
+    //     break;
+    // }
   }
 
   // 同じ意味
