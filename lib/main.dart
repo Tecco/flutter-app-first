@@ -76,6 +76,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // decorate
   }
 
+  // getter
+  int get counter => _counter;
+
+  // setter
+  set counter(int count) => _counter = count;
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
