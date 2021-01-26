@@ -104,11 +104,14 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            RaisedButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SecondPage();
-              }));
-            })
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SecondPage();
+                }));
+              },
+              child: Text('Go to Next'),
+            ),
           ],
         ),
       ),
