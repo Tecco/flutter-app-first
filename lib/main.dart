@@ -251,10 +251,10 @@ class SecondPage extends StatelessWidget {
               Icon(Icons.insert_comment),
               Container(
                   // color: Colors.red,
-                  padding: EdgeInsets.all(32),
-                  margin: EdgeInsets.only(top: 32),
-                  width: 240,
-                  height: 240,
+                  padding: EdgeInsets.all(16),
+                  margin: EdgeInsets.only(top: 16),
+                  width: 192,
+                  height: 192,
                   decoration: BoxDecoration(
                       color: Colors.green,
                       border: Border.all(color: Colors.red, width: 8),
@@ -270,11 +270,24 @@ class SecondPage extends StatelessWidget {
                   shape: BoxShape.circle,
                   image: DecorationImage(image: Image.network(_imageUrl).image),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [item(), item(), item()],
               )
             ]),
       ),
     );
   }
+}
+
+Container item({double size = 50}) {
+  return Container(
+    margin: const EdgeInsets.all(8),
+    width: size,
+    height: size,
+    color: Colors.green,
+  );
 }
 
 class ThirdPage extends StatelessWidget {
