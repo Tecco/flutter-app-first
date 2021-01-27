@@ -320,8 +320,8 @@ class ThirdPage extends StatelessWidget {
                 item(size: 100),
                 item(size: 100),
                 item(size: 100),
-                item(size: 100),
               ],
+              alignment: WrapAlignment.spaceEvenly,
             ),
             RaisedButton(
               onPressed: () {
