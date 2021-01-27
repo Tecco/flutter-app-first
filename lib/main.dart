@@ -311,11 +311,25 @@ class ThirdPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(secondText)),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Close Third'),
+        child: Column(
+          children: <Widget>[
+            Wrap(
+              children: [
+                item(size: 100),
+                item(size: 100),
+                item(size: 100),
+                item(size: 100),
+                item(size: 100),
+                item(size: 100),
+              ],
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Close Third'),
+            ),
+          ],
         ),
       ),
     );
