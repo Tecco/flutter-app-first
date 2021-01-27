@@ -273,8 +273,12 @@ class SecondPage extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [item(), item(), item()],
-              )
+                children: [item(), item(size: 80), item()],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [item(), Expanded(child: item()), item()],
+              ),
             ]),
       ),
     );
