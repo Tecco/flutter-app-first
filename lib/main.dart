@@ -1,7 +1,31 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
+
+String _imageUrl =
+    'https://i.pinimg.com/564x/e1/0e/77/e10e77ecf16151fe4ff92b1d1fa3f80e.jpg';
+
+enum Color { red, green, blue }
 
 void main() {
   runApp(MyApp());
+}
+
+extension ColorExtension on Color {
+  String get name {
+    switch (this) {
+      case Color.red:
+        return 'red';
+        break;
+      case Color.green:
+        return 'green';
+        break;
+      case Color.blue:
+        return 'blue';
+        break;
+    }
+    // 省略
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -51,6 +75,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  Color _colors = Color.red;
 
   void _incrementCounter() {
     setState(() {
@@ -60,7 +85,56 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      print(getRandomColorName());
     });
+  }
+
+  String getRandomColorName() {
+    var colors = Color.values;
+    var rand = math.Random();
+    var color = colors[rand.nextInt(3)];
+    return color.name;
+    // enumの分岐は以下のような感じ
+    // switch (color) {
+    //   case Color.red:
+    //     break;
+    // }
+  }
+
+  // 同じ意味
+  bool isEven(int number) {
+    return number / 2 == 0;
+  }
+
+  // 同じ意味
+  bool isEven2(int number) => number / 2 == 0;
+
+  // デフォルトパラメータ
+  void decorateText({bool isBold = false}) {
+    // decorate
+  }
+
+  // getter
+  int get counter => _counter;
+
+  // setter
+  set counter(int count) => _counter = count;
+
+  void addListTest() {
+    var list = List();
+    list.add(1);
+    list.add(2);
+    list.add(3);
+
+    list..add(4)..add(5)..add(6);
+
+    var _ = List()..add(1)..add(2)..add(3);
+  }
+
+  void combineListTest() {
+    var list1 = List();
+    var list2 = List()..add(1)..add(2)..add(3);
+    var list3 = [list1, ...list2];
   }
 
   @override
@@ -101,8 +175,27 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '$_counter times',
               style: Theme.of(context).textTheme.headline4,
+            ),
+            if (_counter >= 3)
+              Text(
+                'yeahh',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            RaisedButton(
+              onPressed: () async {
+                var message = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) {
+                        return SecondPage('Close second');
+                      },
+                      fullscreenDialog: true),
+                );
+                print(message);
+              },
+              child: Text('Push Second'),
             ),
           ],
         ),
@@ -112,6 +205,133 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  final String firstText;
+
+  SecondPage(this.firstText);
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('yeaaah')),
+      body: Center(
+        child: Column(
+            // Columnは何も指定しないと、heightがmatch_parentになってるため指定しないと上部にくっついてしまう
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                onPressed: () {
+                  Navigator.pop(context, 'moemoekyun');
+                },
+                child: Text(firstText),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return ThirdPage('second');
+                    },
+                  ));
+                },
+                child: Text('Push third'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(
+                    builder: (context) {
+                      return ThirdPage('second');
+                    },
+                  ));
+                },
+                child: Text('Replace to third'),
+              ),
+              Icon(Icons.insert_comment),
+              Container(
+                  // color: Colors.red,
+                  padding: EdgeInsets.all(16),
+                  margin: EdgeInsets.only(top: 16),
+                  width: 192,
+                  height: 192,
+                  decoration: BoxDecoration(
+                      color: Colors.green,
+                      border: Border.all(color: Colors.red, width: 8),
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Image.network(_imageUrl)),
+              Container(
+                // color: Colors.red,
+                margin: EdgeInsets.only(top: 16),
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: Image.network(_imageUrl).image),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [item(), item(size: 80), item()],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [item(), Expanded(child: item()), item()],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  item(),
+                  Expanded(child: item(), flex: 1),
+                  Expanded(child: item(), flex: 2)
+                ],
+              ),
+            ]),
+      ),
+    );
+  }
+}
+
+Container item({double size = 50}) {
+  return Container(
+    margin: const EdgeInsets.all(8),
+    width: size,
+    height: size,
+    color: Colors.green,
+  );
+}
+
+class ThirdPage extends StatelessWidget {
+  final String secondText;
+
+  ThirdPage(this.secondText);
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(secondText)),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Wrap(
+              children: [
+                item(size: 100),
+                item(size: 100),
+                item(size: 100),
+                item(size: 100),
+                item(size: 100),
+              ],
+              alignment: WrapAlignment.spaceEvenly,
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Close Third'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
